@@ -1,0 +1,39 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Base64Decoder",
+            "request": "launch",
+            "mainClass": "_04_Base64_Decoder.Base64Decoder",
+            "projectName": "Level5-Module4"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - BinaryPrinter",
+            "request": "launch",
+            "mainClass": "_03_Printing_Binary.BinaryPrinter",
+            "projectName": "Level5-Module4"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - BitShifter",
+            "request": "launch",
+            "mainClass": "_01_Bit_Shifting.BitShifter",
+            "projectName": "Level5-Module4"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - DecimalToBinary",
+            "request": "launch",
+            "mainClass": "_00_Binary_Conversion.DecimalToBinary",
+            "projectName": "Level5-Module4"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - BinaryToDecimal",
+            "request": "launch",
+            "mainClass": "_00_Binary_Conversion.BinaryToDecimal",
+            "projectName": "Level5-Module4"
+        }
+    ]
+}

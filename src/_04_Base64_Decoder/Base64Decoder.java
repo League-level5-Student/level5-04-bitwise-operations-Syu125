@@ -2,6 +2,8 @@ package _04_Base64_Decoder;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.jar.Manifest;
 
 public class Base64Decoder {
 	/*
@@ -25,7 +27,9 @@ public class Base64Decoder {
 	 * https://en.wikipedia.org/wiki/Base64
 	 */
 	
-	
+	public static void main(String[] args) {
+		convertBase64Char('B');
+	}
 	final static char[] base64Chars = {
 		'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
 		'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
@@ -37,19 +41,62 @@ public class Base64Decoder {
 	//1. Complete this method so that it returns the the element in
 	//   the base64Chars array that corresponds to the passed in char.
 	public static byte convertBase64Char(char c){
+		for (int i = 0; i < base64Chars.length; i++) {
+			if(base64Chars[i] == c){
+				int value =  i;
+				byte bin = convertDecimal(convert(value));
+				System.out.println("answer: " + bin);
+				return bin;
+			}
+		}
 		return 0;
 	}
-	
-	//2. Complete this method so that it will take in a string that is 4 
-	//   characters long and return an array of 3 bytes (24 bits). The byte 
-	//   array should be the binary value of the encoded characters.
-	public static byte[] convert4CharsTo24Bits(String s){
+
+	// 2. Complete this method so that it will take in a string that is 4
+	// characters long and return an array of 3 bytes (24 bits). The byte
+	// array should be the binary value of the encoded characters.
+	public static byte[] convert4CharsTo24Bits(String s) {
+		char[] c =  s.toCharArray();
+		
 		return null;
 	}
-	
-	//3. Complete this method so that it takes in a string of any length
-	//   and returns the full byte array of the decoded base64 characters.
+
+	// 3. Complete this method so that it takes in a string of any length
+	// and returns the full byte array of the decoded base64 characters.
 	public static byte[] base64StringToByteArray(String file) {
 		return null;
+	}
+
+	public static int[] convert(int b) {
+		ArrayList<Integer> a = new ArrayList<Integer>();
+		int count = 1;
+		for (int i = 0; i < b; i++) {
+			if(count<= b){
+				a.add(count);
+				count*=2;
+			}
+		}
+		int [] binary =  new int[a.size()];
+		for (int i = a.size()-1; i >= 0 ; i--) {
+			if(b-a.get(i) >=0 ){
+				b -= a.get(i);
+				binary[a.size()-1-i] = 1;
+			}else{
+				binary[a.size()-1-i] = 0;
+			}
+		}
+		return binary;
+	}
+	public static byte convertDecimal(int[] binary) {
+		int count = 1;
+		byte num = 0;
+		int [] decimal = new int[binary.length];
+		for (int j = binary.length-1; j >= 0 ; j--) {
+			decimal[j] = count;
+			count *= 2;
+			num += decimal[j]*binary[j];
+		}
+
+		return num;
 	}
 }

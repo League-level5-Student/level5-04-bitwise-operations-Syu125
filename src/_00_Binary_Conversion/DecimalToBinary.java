@@ -1,6 +1,8 @@
 package _00_Binary_Conversion;
 
-public class Decimal_To_Binary {
+import java.util.ArrayList;
+
+public class DecimalToBinary {
 	public static void main(String[] args) {
 		//Converting a decimal number to binary is a little trickier.
 		
@@ -31,5 +33,34 @@ public class Decimal_To_Binary {
 		 *         
 		 *         43 in decimal is 101011 in binary!
 		 */
+		DecimalToBinary dtb = new DecimalToBinary();
+		dtb.convert(43);
+		
+
+	}
+	void convert(int decimal){
+		ArrayList<Integer> a = new ArrayList<Integer>();
+		int count = 1;
+		for (int i = 0; i < decimal; i++) {
+			if(count<= decimal){
+				a.add(count);
+				count*=2;
+			}
+		}
+		int [] binary =  new int[a.size()];
+		for (int i = a.size()-1; i >= 0 ; i--) {
+			if(decimal-a.get(i) >=0 ){
+				decimal -= a.get(i);
+				binary[a.size()-1-i] = 1;
+			}else{
+				binary[a.size()-1-i] = 0;
+			}
+		}
+		
+		String value = "";
+		for (int i : binary) {
+			value = value.concat(String.valueOf(i));
+		}
+		System.out.println(value);
 	}
 }
