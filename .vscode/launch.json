@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - AndOrXor",
+            "request": "launch",
+            "mainClass": "_02_AND_OR_and_XOR.AndOrXor",
+            "projectName": "Level5-Module4"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Base64Decoder",
             "request": "launch",
             "mainClass": "_04_Base64_Decoder.Base64Decoder",
