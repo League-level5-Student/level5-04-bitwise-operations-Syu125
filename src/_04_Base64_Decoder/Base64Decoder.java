@@ -81,7 +81,7 @@ public class Base64Decoder {
 	// and returns the full byte array of the decoded base64 characters.
 	public static byte[] base64StringToByteArray(String file) {
 		byte[] test = new byte[file.length()];
-		byte[] result = new byte[file.length() - 1];
+		byte[] result = new byte[file.length() - file.length() / 4];
 		for (int i = 0; i < file.length(); i++) {
 			for (int j = 0; j < base64Chars.length; j++) {
 				if (base64Chars[j] == file.charAt(i)) {
@@ -90,28 +90,24 @@ public class Base64Decoder {
 				}
 			}
 		}
-		for (byte b : test) {
-			System.out.println(b);
-		}
-		System.out.println("finish");
-		int count = 0;
-		for (int i = 0; i < result.length; i++) {
-			if(count == 0){
-				result[i] = (byte) ((test[i] << 2) | (test[i + 1] >> 4));
-				count++;
-			}else if(count == 1){
-				result[i] = (byte) ((test[i] << 4) | (test[i + 1] >> 2));
-				count++;
-			}else{
-				result[i] = (byte) ((test[i] << 6) | (test[i + 1]));
-				count = 0;
+		int add = 0;
+		for (int j = 0; j < result.length; j+=3) {
+			for (int i = 0; i < 3; i++) {
+				if (i == 0) {
+					result[j] = (byte) ((test[i + add] << 2) | (test[i + 1 + add] >> 4));
+				} else if (i == 1) {
+					result[j+1] = (byte) ((test[i + add] << 4) | (test[i + 1 + add] >> 2));
+				} else {
+					result[j+2] = (byte) ((test[i + add] << 6) | (test[i + 1 + add]));
+				}
+				System.out.println("result " + result[j]);
 			}
-			System.out.println("result " + result[i]);
+			
+			add += 4;
 		}
-
-		/*for (int i = 0; i < result.length; i++) {
-			System.out.println(result[i]);
-		}*/
+		for (byte b : result) {
+			System.out.println("byte: " + b);
+		}
 		return result;
 	}
 
